@@ -1,0 +1,32 @@
+.MessageList {
+    overflow-y: auto;
+
+    .p-card {
+        border-radius: 5px;
+    }
+
+    .card-wrapper {
+        margin: 10px;
+
+        .message-wrapper {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            text-align: left;
+
+            .message-header {
+                grid-column: 1;
+                font-weight: bolder;
+                align-self: center;
+            }
+            .message-body {
+                grid-column: 2;
+                margin: 5px 0 5px 10px;
+                align-self: center;
+
+                pre {
+                    margin: 0;
+                }
+            }
+        }
+    }
+}

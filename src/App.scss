@@ -1,0 +1,18 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  overflow-y: hidden;
+
+  width: 100vw;
+  height: 100vh;
+
+  background-color: lightblue;
+
+  .message-list-wrapper {
+    flex: 1 1 auto;
+  }
+
+  .new-messages-wrapper {
+    flex: none;
+  }
+}
