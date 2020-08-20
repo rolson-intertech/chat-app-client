@@ -1,6 +1,6 @@
 import { IChatMessage, EP_GET_ALL_MESSAGES, EP_SEND_NEW_MESSAGE, MSG_MESSAGE_RECEIVED, convertDates } from "./shared-definitions";
 import io from 'socket.io-client';
-import { Subject, Observable } from 'rxjs';
+import { Subject } from 'rxjs';
 
 
 /** This class is responsible for all server interactions concerning messaging.
