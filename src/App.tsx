@@ -35,13 +35,15 @@ export default class App extends React.Component<IAppProps, IAppState>{
 
       <div className="App">
 
-        {this.state.viewType === 'messages'
-          ? <React.Fragment>
-            <MessageList />
+        <div className="app-wrapper">
+          {this.state.viewType === 'messages'
+            ? <React.Fragment>
+              <MessageList />
 
-            <NewMessage userName={this.state.userName} /></React.Fragment>
-          : <UserNameInput userNameEnteredCallback={newName => this.onNameUpdated(newName)} />}
+              <NewMessage userName={this.state.userName} /></React.Fragment>
+            : <UserNameInput userNameEnteredCallback={newName => this.onNameUpdated(newName)} />}
 
+        </div>
       </div>
     );
   }

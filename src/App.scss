@@ -1,18 +1,18 @@
 .App {
-  display: flex;
-  flex-direction: column;
-  overflow-y: hidden;
-
   width: 100vw;
   height: 100vh;
 
   background-color: lightblue;
 
-  .message-list-wrapper {
-    flex: 1 1 auto;
-  }
+  .app-wrapper {
+    display: flex;
+    flex-direction: column;
+    overflow-y: hidden;
+    height: 100%;
 
-  .new-messages-wrapper {
-    flex: none;
+    max-width: 600px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
   }
 }

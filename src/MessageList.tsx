@@ -41,15 +41,30 @@ export class MessageList extends React.Component<IMessageListProps, IMessageList
             //  makes future additions a trivial routine.
             //  IMPORTANT NOTE: This is a function, that returns an object!  This is why the braces are
             //   surrounded by parenthesis.
-            this.setState(prevState => ({ ...prevState, messages: newMessages }))
+            this.setState(prevState => ({ ...prevState, messages: newMessages }), () => {
+                // Wait a brief time for everything to update before we perform our scroll.
+                //  If not, things may not be updated, and we won't scroll the full length.
+                setTimeout(() => {
+                    this.messageListRef.current.scroll({ top: this.messageListRef.current.scrollHeight, behavior: 'smooth' });
+                });
+            });
         });
 
         // Get all of the messages from the server.
         this.messageClient.getAllMessages().then(result => {
             // Set the messages in our state.  This will trigger the component to update.
-            this.setState(prevState => ({ ...prevState, messages: result }));
+            this.setState(prevState => ({ ...prevState, messages: result }), () => {
+                // Wait a brief time for everything to update before we perform our scroll.
+                //  If not, things may not be updated, and we won't scroll the full length.
+                setTimeout(() => {
+                    this.messageListRef.current.scroll({ top: this.messageListRef.current.scrollHeight, behavior: 'smooth' });
+                });
+            });
         });
     }
+
+    /** Reference to the component's outer-most div element. */
+    private messageListRef = React.createRef<HTMLDivElement>();
 
     /** Called on all React Components when they are about to be removed/destroyed. */
     componentWillUnmount(): void {
@@ -67,7 +82,7 @@ export class MessageList extends React.Component<IMessageListProps, IMessageList
     /** This is the standard render method for all React Component classes, which
      *   returns the way our component looks in the browser. */
     render(): React.ReactNode {
-        return (<div className="MessageList">
+        return (<div className="MessageList" ref={this.messageListRef}>
             {this.state.messages.map(m => <div key={m._id} className="card-wrapper">
                 <Card>
                     <div className="message-wrapper">
